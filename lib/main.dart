@@ -21,8 +21,12 @@ class MyApp extends StatelessWidget {
   final MyTheme myTheme = MyTheme();
   final MyRoutes myRoutes = MyRoutes();
 
+
+
   @override
   Widget build(BuildContext context) {
+
+
     return ResponsiveSizer(
       builder: (context, orientation, screenType) => MaterialApp(
         title: "Notes",

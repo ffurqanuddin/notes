@@ -6,7 +6,9 @@ import 'package:notes/components/assets/assets.dart';
 import 'package:notes/components/routes/routes.dart';
 import 'package:notes/global/widgets/svg_circle_image.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../components/responsive/responsive.dart';
 import '../../../components/theme/textstyles.dart';
+import '../../../utils/media_query.dart';
 import '../../data/auth_data.dart';
 import '../widgets/auth_button_widget.dart';
 import '../widgets/auth_text_field_widget.dart';
@@ -34,69 +36,79 @@ class SignUpPage extends ConsumerWidget {
         padding: EdgeInsets.only(top: 12.h),
         child: Form(
           key: formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ///----------SVG Image-------///
-              SvgCircleImage(svgFromAsset: MyAssets.userAdd, radius: 18.w),
+          child: Center(
+            child: Container(
+              padding: const EdgeInsets.all(15),
+              width: Responsive.isDesktop(context)?MQ.width(context)*0.45:Responsive.isTablet(context)?MQ.width(context)*0.8:double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ///----------SVG Image-------///
+                  SvgCircleImage(
+                      svgFromAsset: MyAssets.userAdd, radius: Responsive.isDesktop(context)?14.h:Responsive.isTablet(context)?16.h: 10.h),
 
-              Gap(5.w),
+                 if(Responsive.isMobile(context)) Gap(5.w),
+                 if(Responsive.isDesktop(context)) Gap(2.h),
 
-              ///-------------EMAIL FIELD-----------///
-              AuthTextFieldWidget(
-                controller: emailController,
-                icon: Icons.email_outlined,
-                hint: "Enter your email",
-                validator: emailValidatity,
-              ),
-
-              Gap(5.w),
-
-              ///-------------PASSWORD FIELD----------///
-
-              ///---1st---///
-              AuthTextFieldWidget(
-                  controller: passwordController,
-                  icon: FontAwesomeIcons.lock,
-                  obscure: obscure,
-                  eyeIcon: true,
-                  hint: "Enter a password",
-                  validator: passwordValidatity),
-
-              Gap(5.w),
-
-              ///---Confirm Password---///
-              AuthTextFieldWidget(
-                controller: confirmPasswordController,
-                icon: FontAwesomeIcons.lock,
-                obscure: obscure,
-                eyeIcon: true,
-                hint: "Confirm Password",
-                validator: confirmPasswordValidatity,
-              ),
-
-              Gap(5.w),
-
-              ///-------------SIGNUP BUTTON----------///
-              AuthButton(label: "Signup"),
-
-              Gap(3.w),
-
-              ///Create an account
-              TextButton(
-                  child: Text(
-                    "Already have an account?",
-                    style: MyTextStyles.authTextButton,
+                  ///-------------EMAIL FIELD-----------///
+                  AuthTextFieldWidget(
+                    controller: emailController,
+                    icon: Icons.email_outlined,
+                    hint: "Enter your email",
+                    validator: emailValidatity,
                   ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, MyRoutes.login);
-                  }),
 
-              Gap(10.w),
+                  if(Responsive.isMobile(context))Gap(5.w),
+                  ///-------------PASSWORD FIELD----------///
 
-              ///-------------CONTINUE WITH GOOGLE----------///
-              GoogleButtonWidget(onTap: () {}),
-            ],
+                  ///---1st---///
+                  AuthTextFieldWidget(
+                      controller: passwordController,
+                      icon: FontAwesomeIcons.lock,
+                      obscure: obscure,
+                      eyeIcon: true,
+                      hint: "Enter a password",
+                      validator: passwordValidatity),
+
+                  if(Responsive.isMobile(context)) Gap(5.w),
+
+                  ///---Confirm Password---///
+                  AuthTextFieldWidget(
+                    controller: confirmPasswordController,
+                    icon: FontAwesomeIcons.lock,
+                    obscure: obscure,
+                    eyeIcon: true,
+                    hint: "Confirm Password",
+                    validator: confirmPasswordValidatity,
+                  ),
+
+                  if(Responsive.isMobile(context))  Gap(5.w),
+                  if(Responsive.isDesktop(context))  Gap(2.h),
+
+                  ///-------------SIGNUP BUTTON----------///
+                  AuthButton(label: "Signup"),
+
+                  if(Responsive.isMobile(context)) Gap(3.w),
+                  if(Responsive.isDesktop(context)) Gap(2.h),
+
+                  ///Already have account
+                  TextButton(
+                      child: Text(
+                        "Already have an account?",
+                        style: MyTextStyles.authTextButton(context),
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, MyRoutes.login);
+                      }),
+
+                  if(Responsive.isMobile(context)) Gap(10.w),
+                  if(Responsive.isDesktop(context)) Gap(3.h),
+
+                  ///-------------CONTINUE WITH GOOGLE----------///
+                  GoogleButtonWidget(onTap: () {}),
+                ],
+              ),
+            ),
           ),
         ),
       ),
