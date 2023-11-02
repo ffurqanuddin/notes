@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "472231421920",
+    "project_id": "notes-f3dc3",
+    "storage_bucket": "notes-f3dc3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472231421920:android:5d81410cac79fc92ad2d85",
+        "android_client_info": {
+          "package_name": "com.lyrilab.notes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO-RifDmDp6cQryBU6CwvqpdTECf_Y5bs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
